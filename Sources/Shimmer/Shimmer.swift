@@ -75,20 +75,22 @@ public struct Shimmer: ViewModifier {
      */
 
     /// The start unit point of our gradient, adjusting for layout direction.
+    /// Horizontal sweep: y is fixed at 0.5, only x animates.
     var startPoint: UnitPoint {
         if layoutDirection == .rightToLeft {
-            isInitialState ? UnitPoint(x: max, y: min) : UnitPoint(x: 0, y: 1)
+            isInitialState ? UnitPoint(x: max, y: 0.5) : UnitPoint(x: 0, y: 0.5)
         } else {
-            isInitialState ? UnitPoint(x: min, y: min) : UnitPoint(x: 1, y: 1)
+            isInitialState ? UnitPoint(x: min, y: 0.5) : UnitPoint(x: 1, y: 0.5)
         }
     }
 
     /// The end unit point of our gradient, adjusting for layout direction.
+    /// Horizontal sweep: y is fixed at 0.5, only x animates.
     var endPoint: UnitPoint {
         if layoutDirection == .rightToLeft {
-            isInitialState ? UnitPoint(x: 1, y: 0) : UnitPoint(x: min, y: max)
+            isInitialState ? UnitPoint(x: 1, y: 0.5) : UnitPoint(x: min, y: 0.5)
         } else {
-            isInitialState ? UnitPoint(x: 0, y: 0) : UnitPoint(x: max, y: max)
+            isInitialState ? UnitPoint(x: 0, y: 0.5) : UnitPoint(x: max, y: 0.5)
         }
     }
 
